@@ -18,11 +18,15 @@ def generate_password(length):
     result = ''.join([random.choice(string.ascii_lowercase) for x in range(length)])
     return result
 
+@app.route('/hello')
+def hello():
+    return 'Hello world!'
+
 
 @app.route('/create-team', methods=['POST'])
 def create_team():
     # TODO: check secret
-    print(request.args.get('secret'))
+    # print(request.args.get('secret'))
 
     data = request.get_json()
 
@@ -44,3 +48,4 @@ def create_team():
     conn.close()
     smtp.quit()
     return Response(status=200)
+
