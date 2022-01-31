@@ -1,6 +1,8 @@
 CREATE TABLE IF NOT EXISTS teams(
     id SERIAL PRIMARY KEY,
-    title_name VARCHAR(255)
+    external_id VARCHAR(255) UNIQUE NOT NULL,
+    title_name VARCHAR(255),
+    leader_id INT DEFAULT NULL
 );
 
 CREATE TABLE IF NOT EXISTS mc_users(
@@ -13,3 +15,4 @@ CREATE TABLE IF NOT EXISTS mc_users(
     CONSTRAINT fk_team FOREIGN KEY(team_id) REFERENCES teams(id) ON DELETE RESTRICT
 );
 
+ALTER TABLE teams ADD CONSTRAINT fk_leader FOREIGN KEY(leader_id) REFERENCES mc_users(id) ON DELETE RESTRICT;

@@ -1,7 +1,6 @@
 import psycopg2
 import os
 
-
 def get_db():
     conn = psycopg2.connect(
         host=os.environ.get('DATABASE_HOST'),
